@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <!-- CRITICAL MOBILE VIEWPORT FIX -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+      
+      <!-- iOS PWA Meta Tags -->
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+      <meta name="apple-mobile-web-app-title" content="Archi Trace">
+      <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+      
+      <!-- Android PWA -->
+      <meta name="mobile-web-app-capable" content="yes">
+      <meta name="theme-color" content="#000000">
+      
+      <title>AR Trace Pro</title>
+      <link rel="stylesheet" href="/static/css/style.css">
+      <link rel="manifest" href="/static/manifest.json">
+  </head>
+
+  <body>
+    <!-- Add after opening body tag -->
+    <div class="parallax-architecture-bg">
+      <div class="arch-grid-layer"></div>
+      <div class="arch-blueprint-dots"></div>
+      <div class="arch-floating-shapes"></div>
+      <div class="arch-floating-shapes"></div>
+      <div class="arch-floating-shapes"></div>
+    </div>
+
+    <!-- Toast Notification (for messages) -->
+    <div class="toast" id="toast"></div>
+
+    <!-- PWA Install Prompt -->
+    <div class="pwa-install-prompt" id="installPrompt">
+      <p>Install Archi Trace for better experience?</p>
+      <button id="installBtn">Install</button>
+      <button id="dismissInstall">Not Now</button>
+    </div>
+    <div id="profileBadge">
+      <img id="profileAvatar" />
+      <span id="profileName"></span>
+    </div>
+
+    <div id="camera-wrapper">
+      <video id="camera" autoplay playsinline></video>
+      <canvas id="overlay"></canvas>
+
+      <!-- FLOATING LOCK BUTTON -->
+      <button id="lockBtn" class="lock-btn unlocked">
+        🔓
+      </button>
+    </div>
+
+    <!-- Controls -->
+    <div id="controls" class="collapsed">
+      <label>
+        Opacity
+        <input type="range" id="opacity" min="0" max="100" step="1" value="50">
+      </label>
+      <label>
+        Scale
+        <input type="range" id="scale" min="10" max="500" step="1" value="100">
+      </label>
+      <input type="file" id="imageUpload" accept="image/*">
+      <div class="control-hint" id="controlHint">
+        📱 Use two fingers to zoom & rotate
+      </div>
+    </div>
+
+    <button id="toggleControls">▲</button>
+
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>

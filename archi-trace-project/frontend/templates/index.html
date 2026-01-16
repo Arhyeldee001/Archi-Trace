@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archi Trace — Dashboard</title>
+  <link rel="stylesheet" href="/static/css/dashboard.css" />
+
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+
+</head>
+<body>
+  <!-- Add this inside <body> -->
+  <div class="parallax-background">
+    <div class="parallax-layer arch-grid-layer"></div>
+    <div class="parallax-layer arch-shape-1"></div>
+    <div class="parallax-layer arch-shape-2"></div>
+  </div>
+  <div class="dashboard">
+
+    <!-- In your header section -->
+        <!-- With this: -->
+    <header class="dashboard-header">
+      <h1>Archi Trace</h1>
+      <div class="header-controls">
+        <button id="themeToggle" class="theme-toggle" title="Toggle theme">🌙</button>
+        <button id="settingsBtn" class="settings-btn">⚙️</button>
+      </div>
+    </header>
+
+    <!-- Main start card -->
+    <div class="card start-card">
+      <h2>Ready to Trace?</h2>
+      <p>Set up your workspace and start tracing</p>
+      <button id="startBtn">Start Tracing</button>
+    </div>
+
+    <!-- Update your tutorial card HTML to this -->
+    <div class="card start-card">
+      <h3>How to Use</h3>
+      <p>Learn how to use the archi trace app</p>
+      <button id="tutorialBtn">Learn</button>
+    </div>
+    
+    <!-- Collapsible settings panel -->
+    <div class="settings-panel" id="settingsPanel">
+      <!-- Panel Header -->
+      <div class="panel-header">
+        <h2>Settings</h2>
+        <button id="closePanelBtn" class="close-panel-btn">←</button>
+      </div>
+      
+      <!-- Panel Content (Scrollable Area) -->
+      <div class="panel-content">
+        <!-- Profile Card -->
+        <div class="card">
+          <h2>Profile</h2>
+          <label>
+            Username
+            <input type="text" id="username" placeholder="Your name" />
+          </label>
+          <label class="avatar-upload">
+            Avatar
+            <input type="file" id="avatar" accept="image/*" />
+          </label>
+          <div class="avatar-preview">
+            <img id="avatarPreview" />
+          </div>
+        </div>
+
+        <!-- Preferences Card -->
+        <div class="card">
+          <h2>Preferences</h2>
+          <label>
+            Default Opacity
+            <input type="range" id="opacity" min="0.1" max="1" step="0.05" />
+          </label>
+          <label>
+            Default Scale
+            <input type="range" id="scale" min="0.5" max="2" step="0.05" />
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" id="lockByDefault" />
+            Lock image by default
+          </label>
+        </div>
+      </div>
+      
+      <!-- Panel Footer with Save Button -->
+      <div class="panel-footer">
+        <button id="saveBtn" class="save-btn">Save Settings</button>
+      </div>
+    </div>
+
+  </div>
+  <!-- Overlay to detect outside clicks -->
+  <!-- Overlay to detect outside clicks -->
+  <div id="overlayClick" class="overlay"></div>
+
+  <script src="/static/js/dashboard.js"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('SW registered', reg))
+        .catch(err => console.log('SW failed', err));
+    });
+  }
+  </script>
+  
+
+</body>
+</html>

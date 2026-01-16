@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archi Trace — Sign Up</title>
+  <link rel="stylesheet" href="/static/css/signup.css">
+</head>
+<body>
+  <div class="signup-container">
+    <div class="parallax-bg">
+      <div class="parallax-layer layer-1"></div>
+      <div class="parallax-layer layer-2"></div>
+      <div class="parallax-layer layer-3"></div>
+    </div>
+
+    <!-- Optional theme toggle button -->
+    <div class="theme-toggle"></div>
+    <h1>Sign Up</h1>
+    <form id="signupForm" method="post" enctype="multipart/form-data" action="/signup">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Your username" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Your email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Your password" required>
+
+      <label for="avatar">Avatar</label>
+      <input type="file" id="avatar" name="avatar" accept="image/*">
+
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="/login">Log In</a></p>
+  </div>
+
+  <script>
+  const form = document.getElementById('signupForm');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch('/signup', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.detail || "Signup failed");
+        return;
+      }
+
+      alert("Signup successful! Please log in.");
+      window.location.href = "/login";
+
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong. Try again.");
+    }
+  });
+  </script>
+
+</body>
+</html>
